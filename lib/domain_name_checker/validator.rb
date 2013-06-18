@@ -1,6 +1,6 @@
 # The purpose of this class is to provide a simple capability for validating
-# domain names represented in ASCII, a feature that seems to be missing from
-# other more wide-ranging domain-related gems.
+# domain names represented in ASCII or UTF-8, a feature that seems to be
+# missing from other more wide-ranging domain-related gems.
 
 class DomainNameValidator
 
@@ -24,7 +24,7 @@ class DomainNameValidator
   # conversion to ASCII. The validation rules are:
   #
   # 1. The maximum length of a domain name is 253 characters.
-  # 2. A domain name is divided into "labels" seperated by periods. The maximum
+  # 2. A domain name is divided into "labels" separated by periods. The maximum
   #    number of labels (including the top-level domain as a label) is 127.
   # 3. The maximum length of any label within a domain name is 63 characters.
   # 4. No label, including top-level domains, can begin or end with a dash.

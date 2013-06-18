@@ -1,3 +1,3 @@
-module DomainNameChecker
+class DomainNameValidator
 
 end
