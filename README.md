@@ -10,8 +10,8 @@ allows the underlying Internet address to be changed while still referencing
 a resource by its domain name. The domain name space is managed by the 
 Internet Corporation for Assigned Names and Numbers (ICANN).
 
-The right-most label of a domain name is referred to as a top-level domain, or
-TLD. A limited set of top-level domain names, and two-character country codes
+The right-most label of a domain name is referred to as the top-level domain, or
+TLD. A limited set of top-level domain names, and two-character country codes,
 have been standardized. The Internet Assigned Numbers Authority (IANA)
 maintains an annotated list of top-level domains, as well as a list of
 "special use," or reserved, top-level domain names.
