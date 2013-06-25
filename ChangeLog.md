@@ -1,10 +1,3 @@
-1.0 (2013-06-26)
-----------------
-
-Gem released to the Ruby community; deemed suitable for production usage (it
-is a fairly simple gem, after all). Made available on RubyGems.org for the
-first time.
-
 0.2 (2013-06-24)
 ----------------
 
