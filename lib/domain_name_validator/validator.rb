@@ -1,6 +1,6 @@
 # The purpose of this class is to provide a simple capability for validating
-# domain names represented in ASCII or UTF-8, a feature that seems to be
-# missing from other more wide-ranging domain-related gems.
+# domain names represented in ASCII, a feature that seems to be missing or
+# obscured in other more wide-ranging domain-related gems.
 
 class DomainNameValidator
 
@@ -9,14 +9,26 @@ class DomainNameValidator
   MAX_LEVELS = 127
   MIN_LEVELS = 2
 
-  ERR_MAX_DOMAIN_SIZE = 'Maximum domain length of 253 exceeded'
-  ERR_MAX_LABEL_SIZE = 'Maximum domain label length of 63 exceeded'
-  ERR_MAX_LEVEL_SIZE = 'Maximum domain level limit of 127 exceeded'
-  ERR_MIN_LEVEL_SIZE = 'Minimum domain level limit of 2 not achieved'
-  ERR_LABEL_DASH_BEGIN = 'No domain label may begin with a dash'
-  ERR_LABEL_DASH_END = 'No domain label may end with a dash'
-  ERR_TOP_NUMERICAL = 'The top-level domain (the extension) cannot be numerical'
-  ERR_ILLEGAL_CHARS = 'Domain label contains an illegal character'
+  ERRS = {
+    :max_domain_size =>
+       'Maximum domain length of 253 exceeded',
+    :max_label_size =>
+       'Maximum domain label length of 63 exceeded',
+    :max_level_size =>
+       'Maximum domain level limit of 127 exceeded',
+    :min_level_size =>
+       'Minimum domain level limit of 2 not achieved',
+    :label_dash_begin =>
+       'No domain label may begin with a dash',
+    :label_dash_end =>
+       'No domain label may end with a dash',
+    :top_numerical =>
+       'The top-level domain (the extension) cannot be numerical',
+    :illegal_chars =>
+       'Domain label contains an illegal character',
+    :illegal_start =>
+       'No domain name may start with a period'
+    }
 
   # Validates the proper formatting of a normalized domain name, i.e. - a
   # domain that is represented in ASCII. Thus, international domain names are
@@ -29,19 +41,21 @@ class DomainNameValidator
   # 3. The maximum length of any label within a domain name is 63 characters.
   # 4. No label, including top-level domains, can begin or end with a dash.
   # 5. Top-level names cannot be all numeric.
+  # 6. A domain name cannot begin with a period.
 
   def validate(dn, errs = [])
-    errs << ERR_MAX_DOMAIN_SIZE if dn.size > MAX_DOMAIN_LENGTH
+    errs << ERRS[:max_domain_size] if dn.size > MAX_DOMAIN_LENGTH
     parts = dn.split('.')
-    errs << ERR_MAX_LEVEL_SIZE if parts.size > MAX_LEVELS
-    errs << ERR_MIN_LEVEL_SIZE if parts.size < MIN_LEVELS
+    errs << ERRS[:max_level_size] if parts.size > MAX_LEVELS
+    errs << ERRS[:min_level_size] if parts.size < MIN_LEVELS
     parts.each do |p|
-      errs << ERR_MAX_LABEL_SIZE if p.size > MAX_LABEL_LENGTH
-      errs << ERR_LABEL_DASH_BEGIN if p[0] == '-'
-      errs << ERR_LABEL_DASH_END if p[-1] == '-'
-      errs << ERR_ILLEGAL_CHARS unless p.match(/^[a-z0-9\-\_]+$/)
+      errs << ERRS[:max_label_size] if p.size > MAX_LABEL_LENGTH
+      errs << ERRS[:label_dash_begin] if p[0] == '-'
+      errs << ERRS[:label_dash_end] if p[-1] == '-'
+      errs << ERRS[:illegal_chars] unless p.match(/^[a-z0-9\-\_]+$/)
     end
-    errs << ERR_TOP_NUMERICAL if parts.last.match(/^[0-9]+$/)
+    errs << ERRS[:top_numerical] if parts.last.match(/^[0-9]+$/)
+    errs << ERRS[:illegal_start] if parts.first[0] == '.'
 
     errs.size == 0   # TRUE if valid, FALSE otherwise
   end

@@ -2,7 +2,7 @@ domain_name_validator
 =====================
 
 Ever needed to validate a domain name? This gem will validate any domain name
-represented in ASCII or UTF-8.
+represented in ASCII.
 
 The scope of this gem is deliberately focused on validating domain names. It
 simply answers the question: "Is this a real domain name?" Using this command,
@@ -77,6 +77,10 @@ Domain names follow some very detailed rules:
   code. The only exception is for international domain names, for which
   TLD checking is currently bypassed.
 
+* Top-level domain names cannot be all numeric.
+
+* Domain names may not begin with a period.
+
 
 Internationalized Domain Names
 ------------------------------
@@ -112,12 +116,39 @@ Installation doesn't get much simpler than this:
 
     gem install domain_name_validator
 
+Road Map
+--------
+
+More types of checks will be added as they are identified. Support for
+validating top-level domains is also in the works (it's a bit more complex
+than you might imagine).
+
+Alternative Gems
+----------------
+
+If this domain_name_validator gem does not suit your needs, here are a few 
+recommended gems that may provide you with the additional power (and
+complexity) that is deliberately absent from this highly focused gem:
+
+* domain_name - A full-featured gem for parsing/manipulating domain names.
+* ip_address - For everything you need to do with Ipv4 and Ipv6 addresses.
+
+
 Author
 ------
 
 David Keener
 
-Many thanks also for the support of General Dynamics and the Department of
+He's is a long-time Rubyist, with extensive experience both in the Internet
+startup world and government contracting. He is one of the founders of the
+RubyNation and DevIgnition conferences. He speaks often at technical
+conferences, and blogs regularly on Internet-related subjects at
+KeenerTech.com.
+
+Contributors
+------------
+
+Many thanks for the support of General Dynamics and the Department of
 Homeland Security (DHS).
 
 YOUR SUPPORT

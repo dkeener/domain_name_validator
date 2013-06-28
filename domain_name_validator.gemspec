@@ -5,7 +5,7 @@ require "domain_name_validator/version"
 Gem::Specification.new do |gem|
   gem.name        = "domain_name_validator"
   gem.version     = DomainNameValidator::VERSION
-  gem.date        = '2013-06-17'
+  gem.date        = '2013-06-28'
   gem.platform    = Gem::Platform::RUBY
   gem.authors     = ["David Keener"]
   gem.email       = ["dkeener@keenertech.com"]

@@ -47,11 +47,17 @@ describe DomainNameValidator do
       response = @validator.validate(domain)
       response.should be == false
     end
+
+    it 'should fail when a domain name begins with a period' do
+      domain = ".b.c.com"
+      response = @validator.validate(domain)
+      response.should be == false
+    end
   end
 
   describe 'Internationalized (normalized) domain names' do
 
-    it 'should fail when a TLD begins with a dash' do
+    it 'should pass when a normalized international domain name' do
       domain = "xn--kbenhavn-54.eu"
       response = @validator.validate(domain)
       response.should be == true
