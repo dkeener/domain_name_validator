@@ -1,3 +1,14 @@
+0.4 (2013-07-17)
+----------------
+
+* By request, added rudimentary TLD checking. A TLD, the right-most label of a
+  domain name, should be either 2 or 3 characters, unless it's "aero", "arpa",
+  "museum" or begins with "xn--" (for a normalized Unicode TLD). This check
+  does not validate against a master list of TLD's, but basically just fails
+  a domain name if the TLD basically could not be valid under any
+  circumstances. This validation would, for example, reject a domain name
+  such as "test.domain".
+
 0.3 (2013-06-28)
 ----------------
 

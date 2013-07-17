@@ -7,9 +7,21 @@ class DomainNameValidator
   MAX_DOMAIN_LENGTH = 253
   MAX_LABEL_LENGTH = 63
   MAX_LEVELS = 127
+  MAX_TLD_LENGTH = 3         # Except for "aero", "arpa", and "museum"
   MIN_LEVELS = 2
+  MIN_TLD_LENGTH = 2
 
   ERRS = {
+    :bogus_tld =>
+       'Malformed TLD',
+    :illegal_chars =>
+       'Domain label contains an illegal character',
+    :illegal_start =>
+       'No domain name may start with a period',
+    :label_dash_begin =>
+       'No domain label may begin with a dash',
+    :label_dash_end =>
+       'No domain label may end with a dash',
     :max_domain_size =>
        'Maximum domain length of 253 exceeded',
     :max_label_size =>
@@ -18,16 +30,8 @@ class DomainNameValidator
        'Maximum domain level limit of 127 exceeded',
     :min_level_size =>
        'Minimum domain level limit of 2 not achieved',
-    :label_dash_begin =>
-       'No domain label may begin with a dash',
-    :label_dash_end =>
-       'No domain label may end with a dash',
     :top_numerical =>
-       'The top-level domain (the extension) cannot be numerical',
-    :illegal_chars =>
-       'Domain label contains an illegal character',
-    :illegal_start =>
-       'No domain name may start with a period'
+       'The top-level domain (TLD) cannot be numerical'
     }
 
   # Validates the proper formatting of a normalized domain name, i.e. - a
@@ -55,6 +59,14 @@ class DomainNameValidator
       errs << ERRS[:illegal_chars] unless p.match(/^[a-z0-9\-\_]+$/)
     end
     errs << ERRS[:top_numerical] if parts.last.match(/^[0-9]+$/)
+    if parts.last.size < MIN_TLD_LENGTH || parts.last.size > MAX_TLD_LENGTH
+      unless parts.last == 'arpa' ||
+             parts.last == 'aero' ||
+             parts.last == 'museum' ||
+             parts.last.match(/^xn--/)
+        errs << ERRS[:bogus_tld]   
+      end
+    end
     errs << ERRS[:illegal_start] if parts.first[0] == '.'
 
     errs.size == 0   # TRUE if valid, FALSE otherwise

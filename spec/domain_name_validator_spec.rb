@@ -57,7 +57,7 @@ describe DomainNameValidator do
 
   describe 'Internationalized (normalized) domain names' do
 
-    it 'should pass when a normalized international domain name' do
+    it 'should pass with a normalized international domain name' do
       domain = "xn--kbenhavn-54.eu"
       response = @validator.validate(domain)
       response.should be == true
@@ -65,9 +65,44 @@ describe DomainNameValidator do
 
   end
 
-  # TODO: (2013/06/24) TLD checking will be added soon....
+  describe 'Rudimentary TLD Checking' do
 
-  describe 'TLD Checking' do
+    it 'should fail if the TLD is too short' do
+      domain = "test.a"
+      response = @validator.validate(domain)
+      response.should be == false
+    end
+
+    it 'should fail if the TLD is too long' do
+      domain = "test.domain"
+      response = @validator.validate(domain)
+      response.should be == false
+    end
+
+    it "should succeed if the TLD is too long but equals 'aero'" do
+      domain = "test.aero"
+      response = @validator.validate(domain)
+      response.should be == true
+    end
+
+    it "should succeed if the TLD is too long but equals 'arpa'" do
+      domain = "test.arpa"
+      response = @validator.validate(domain)
+      response.should be == true
+    end
+
+    it "should succeed if the TLD is too long but equals 'museum'" do
+      domain = "test.museum"
+      response = @validator.validate(domain)
+      response.should be == true
+    end
+
+    it "should succeed if the TLD is too long but matches 'xn--'" do
+      domain = "test.xn--really-long-text"
+      response = @validator.validate(domain)
+      response.should be == true
+    end
+
   end
 
 end

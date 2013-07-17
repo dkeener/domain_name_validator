@@ -14,7 +14,7 @@ There are other gems and libraries that parse domain names into their various
 components, or parse URLS, or properly handle Unicode domain names, etc. Use
 them; many of them are very good at their well-defined roles. But none of the
 ones that I came across were very good at simply telling me whether a domain
-names was valid.
+names was valid, or WHY it was invalid if it failed the validations.
 
 How It Works
 ------------
@@ -120,8 +120,10 @@ Road Map
 --------
 
 More types of checks will be added as they are identified. Support for
-validating top-level domains is also in the works (it's a bit more complex
-than you might imagine).
+validating top-level domains (TLD's) is also in the works (it's a bit more
+complex than you might imagine). This will also bring in the capability to
+validate effective TLD's as well, i.e. - strings that are treated as top-level
+domains by registrars around the world.
 
 Alternative Gems
 ----------------
@@ -139,7 +141,7 @@ Author
 
 David Keener
 
-He's is a long-time Rubyist, with extensive experience both in the Internet
+He's a long-time Rubyist, with extensive experience both in the Internet
 startup world and government contracting. He is one of the founders of the
 RubyNation and DevIgnition conferences. He speaks often at technical
 conferences, and blogs regularly on Internet-related subjects at
@@ -149,7 +151,8 @@ Contributors
 ------------
 
 Many thanks for the support of General Dynamics and the Department of
-Homeland Security (DHS).
+Homeland Security (DHS). And more specifically on input from Andrew Finch,
+Josh Lentz, Jonathan Quigg and Dave Roberts.
 
 YOUR SUPPORT
 ------------
