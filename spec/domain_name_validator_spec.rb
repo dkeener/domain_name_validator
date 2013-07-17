@@ -85,6 +85,12 @@ describe DomainNameValidator do
       response.should be == true
     end
 
+    it "should succeed if the TLD is too long but equals 'info'" do
+      domain = "test.info"
+      response = @validator.validate(domain)
+      response.should be == true
+    end
+
     it "should succeed if the TLD is too long but equals 'arpa'" do
       domain = "test.arpa"
       response = @validator.validate(domain)

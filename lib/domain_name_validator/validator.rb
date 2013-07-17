@@ -7,7 +7,7 @@ class DomainNameValidator
   MAX_DOMAIN_LENGTH = 253
   MAX_LABEL_LENGTH = 63
   MAX_LEVELS = 127
-  MAX_TLD_LENGTH = 3         # Except for "aero", "arpa", and "museum"
+  MAX_TLD_LENGTH = 3       # Except for "aero", "arpa", "info" and "museum"
   MIN_LEVELS = 2
   MIN_TLD_LENGTH = 2
 
@@ -62,6 +62,7 @@ class DomainNameValidator
     if parts.last.size < MIN_TLD_LENGTH || parts.last.size > MAX_TLD_LENGTH
       unless parts.last == 'arpa' ||
              parts.last == 'aero' ||
+             parts.last == 'info' ||
              parts.last == 'museum' ||
              parts.last.match(/^xn--/)
         errs << ERRS[:bogus_tld]   
