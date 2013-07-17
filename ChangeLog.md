@@ -9,6 +9,13 @@
   circumstances. This validation would, for example, reject a domain name
   such as "test.domain".
 
+* (0.4.1) Added "info" as a valid extra-long TLD. How i missed this one, I
+  have no idea.
+
+* (0.4.2) Added a check for zero-length domain names, either empty strings
+  or Ruby nil values being passed in. In practice, these edge cases were
+  actually happening.
+
 0.3 (2013-06-28)
 ----------------
 

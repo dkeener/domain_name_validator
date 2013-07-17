@@ -13,7 +13,7 @@ class DomainNameValidator
 
   ERRS = {
     :bogus_tld =>
-       'Malformed TLD',
+       'Malformed TLD: Could not possibly match any valid TLD',
     :illegal_chars =>
        'Domain label contains an illegal character',
     :illegal_start =>
@@ -31,7 +31,9 @@ class DomainNameValidator
     :min_level_size =>
        'Minimum domain level limit of 2 not achieved',
     :top_numerical =>
-       'The top-level domain (TLD) cannot be numerical'
+       'The top-level domain (TLD) cannot be numerical',
+    :zero_size =>
+       'Zero-length domain name'
     }
 
   # Validates the proper formatting of a normalized domain name, i.e. - a
@@ -48,27 +50,31 @@ class DomainNameValidator
   # 6. A domain name cannot begin with a period.
 
   def validate(dn, errs = [])
-    errs << ERRS[:max_domain_size] if dn.size > MAX_DOMAIN_LENGTH
-    parts = dn.split('.')
-    errs << ERRS[:max_level_size] if parts.size > MAX_LEVELS
-    errs << ERRS[:min_level_size] if parts.size < MIN_LEVELS
-    parts.each do |p|
-      errs << ERRS[:max_label_size] if p.size > MAX_LABEL_LENGTH
-      errs << ERRS[:label_dash_begin] if p[0] == '-'
-      errs << ERRS[:label_dash_end] if p[-1] == '-'
-      errs << ERRS[:illegal_chars] unless p.match(/^[a-z0-9\-\_]+$/)
-    end
-    errs << ERRS[:top_numerical] if parts.last.match(/^[0-9]+$/)
-    if parts.last.size < MIN_TLD_LENGTH || parts.last.size > MAX_TLD_LENGTH
-      unless parts.last == 'arpa' ||
-             parts.last == 'aero' ||
-             parts.last == 'info' ||
-             parts.last == 'museum' ||
-             parts.last.match(/^xn--/)
-        errs << ERRS[:bogus_tld]   
+    errs << ERRS[:zero_size] if dn.nil? || dn.size == 0
+
+    if errs.size == 0
+      errs << ERRS[:max_domain_size] if dn.size > MAX_DOMAIN_LENGTH
+      parts = dn.split('.')
+      errs << ERRS[:max_level_size] if parts.size > MAX_LEVELS
+      errs << ERRS[:min_level_size] if parts.size < MIN_LEVELS
+      parts.each do |p|
+        errs << ERRS[:max_label_size] if p.size > MAX_LABEL_LENGTH
+        errs << ERRS[:label_dash_begin] if p[0] == '-'
+        errs << ERRS[:label_dash_end] if p[-1] == '-'
+        errs << ERRS[:illegal_chars] unless p.match(/^[a-z0-9\-\_]+$/)
       end
+      errs << ERRS[:top_numerical] if parts.last.match(/^[0-9]+$/)
+      if parts.last.size < MIN_TLD_LENGTH || parts.last.size > MAX_TLD_LENGTH
+        unless parts.last == 'arpa' ||
+               parts.last == 'aero' ||
+               parts.last == 'info' ||
+               parts.last == 'museum' ||
+               parts.last.match(/^xn--/)
+          errs << ERRS[:bogus_tld]   
+        end
+      end
+      errs << ERRS[:illegal_start] if parts.first[0] == '.'
     end
-    errs << ERRS[:illegal_start] if parts.first[0] == '.'
 
     errs.size == 0   # TRUE if valid, FALSE otherwise
   end

@@ -13,6 +13,16 @@ describe DomainNameValidator do
       response.should be == true
     end
 
+    it 'should fail when it finds nil instead of a domain name' do
+      response = @validator.validate(nil)
+      response.should be == false
+    end
+
+    it 'should fail when it finds an empty string instead of a domain name' do
+      response = @validator.validate("")
+      response.should be == false
+    end
+
     it 'should fail when it finds a numeric top-level extension' do
       response = @validator.validate('keenertech.123')
       response.should be == false
