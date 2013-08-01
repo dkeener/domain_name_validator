@@ -5,13 +5,14 @@ require "domain_name_validator/version"
 Gem::Specification.new do |gem|
   gem.name        = "domain_name_validator"
   gem.version     = DomainNameValidator::VERSION
-  gem.date        = '2013-07-17'
+  gem.date        = '2013-08-01'
   gem.platform    = Gem::Platform::RUBY
   gem.authors     = ["David Keener"]
   gem.email       = ["dkeener@keenertech.com"]
   gem.homepage    = "http://www.keenertech.com"
   gem.summary     = %q{Domain Name Validator}
   gem.description = %q{Checks the validity of domain names.}
+  gem.license     = 'MIT'
  
   gem.add_development_dependency "rspec"
 

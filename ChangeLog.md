@@ -9,12 +9,23 @@
   circumstances. This validation would, for example, reject a domain name
   such as "test.domain".
 
-* (0.4.1) Added "info" as a valid extra-long TLD. How i missed this one, I
-  have no idea.
+* (0.4.1 - 2013-07-17) Added "info" as a valid extra-long TLD. How I missed
+  this one, I have no idea.
 
-* (0.4.2) Added a check for zero-length domain names, either empty strings
-  or Ruby nil values being passed in. In practice, these edge cases were
-  actually happening.
+* (0.4.2 - 2013-07-17) Added a check for zero-length domain names, either
+  empty strings or Ruby nil values being passed in. In practice, these edge
+  cases were actually happening.
+
+* (0.4.3 - 2013-08-01) For the TLD reality check, IANA (the Internet Assigned
+  Numbers Authority) recognizes some long TLD's that were not on the original
+  list for this gem, such as ".travel", ".jobs", etc. To reiterate, the gem
+  does not validate against the full list of TLD's or effective TLD's, but 
+  it does validate that the TLD length COULD be a valid TLD. As an example,
+  a TLD of 14 characters would be rejected because there are no valid domains
+  that could match that pattern.
+
+* (0.4.3 - 2013-08-01) Added the "license" attribute to the gemspec. This is
+  in response to an issue that was opened on GitHub.
 
 0.3 (2013-06-28)
 ----------------

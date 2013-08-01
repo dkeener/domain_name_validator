@@ -67,8 +67,15 @@ class DomainNameValidator
       if parts.last.size < MIN_TLD_LENGTH || parts.last.size > MAX_TLD_LENGTH
         unless parts.last == 'arpa' ||
                parts.last == 'aero' ||
+               parts.last == 'asia' ||
+               parts.last == 'coop' ||
+               parts.last == 'jobs' ||
                parts.last == 'info' ||
+               parts.last == 'mobi' ||
                parts.last == 'museum' ||
+               parts.last == 'name' ||
+               parts.last == 'post' ||
+               parts.last == 'travel' ||
                parts.last.match(/^xn--/)
           errs << ERRS[:bogus_tld]   
         end
