@@ -143,7 +143,7 @@ David Keener
 
 He's a long-time Rubyist, with extensive experience both in the Internet
 startup world and government contracting. He is one of the founders of the
-RubyNation and DevIgnition conferences. He speaks often at technical
+RubyNation, DevIgnition and NationJS conferences. He speaks often at technical
 conferences, and blogs regularly on Internet-related subjects at
 KeenerTech.com.
 

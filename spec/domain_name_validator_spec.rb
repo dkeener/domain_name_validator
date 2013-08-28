@@ -13,6 +13,11 @@ describe DomainNameValidator do
       response.should be == true
     end
 
+    it 'should pass a valid domain name with uppercase letters' do
+      response = @validator.validate('KeenerTech.COM')
+      response.should be == true
+    end
+
     it 'should fail when it finds nil instead of a domain name' do
       response = @validator.validate(nil)
       response.should be == false

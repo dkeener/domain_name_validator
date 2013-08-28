@@ -54,7 +54,7 @@ class DomainNameValidator
 
     if errs.size == 0
       errs << ERRS[:max_domain_size] if dn.size > MAX_DOMAIN_LENGTH
-      parts = dn.split('.')
+      parts = dn.downcase.split('.')
       errs << ERRS[:max_level_size] if parts.size > MAX_LEVELS
       errs << ERRS[:min_level_size] if parts.size < MIN_LEVELS
       parts.each do |p|

@@ -27,6 +27,9 @@
 * (0.4.3 - 2013-08-01) Added the "license" attribute to the gemspec. This is
   in response to an issue that was opened on GitHub.
 
+* (0.4.4 - 2013-08-28) Fixed bug involving proper handling of domain names with
+  capital letters. Reported by a user.
+
 0.3 (2013-06-28)
 ----------------
 
