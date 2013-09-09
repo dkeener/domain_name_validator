@@ -1,3 +1,10 @@
+0.5 (TBD)
+
+* By request, the gem now ignores leading/trailing whitespace when validating
+  domain names. This includes ignoring newlines at the end of domain names.
+
+* Remove timestamp from gemspec so Rubygems will calculate gem dates forus.
+
 0.4 (2013-07-17)
 ----------------
 

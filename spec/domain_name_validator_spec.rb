@@ -28,6 +28,11 @@ describe DomainNameValidator do
       response.should be == false
     end
 
+    it 'should pass when it finds a domain with leading/trainling whitespace' do
+      response = @validator.validate("  www.domain-1.com\n")
+      response.should be == true
+    end
+
     it 'should fail when it finds a numeric top-level extension' do
       response = @validator.validate('keenertech.123')
       response.should be == false

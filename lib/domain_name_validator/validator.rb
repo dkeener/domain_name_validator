@@ -50,7 +50,12 @@ class DomainNameValidator
   # 6. A domain name cannot begin with a period.
 
   def validate(dn, errs = [])
-    errs << ERRS[:zero_size] if dn.nil? || dn.size == 0
+    if dn.nil?
+      errs << ERRS[:zero_size]
+    else
+      dn = dn.strip
+      errs << ERRS[:zero_size] if dn.size == 0
+    end
 
     if errs.size == 0
       errs << ERRS[:max_domain_size] if dn.size > MAX_DOMAIN_LENGTH

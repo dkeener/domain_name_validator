@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    domain_name_validator (0.4.4)
+    domain_name_validator (0.5)
 
 GEM
   remote: http://rubygems.org/
