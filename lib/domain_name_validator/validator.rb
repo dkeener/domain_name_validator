@@ -74,8 +74,8 @@ class DomainNameValidator
                parts.last == 'aero' ||
                parts.last == 'asia' ||
                parts.last == 'coop' ||
-               parts.last == 'jobs' ||
                parts.last == 'info' ||
+               parts.last == 'jobs' ||
                parts.last == 'mobi' ||
                parts.last == 'museum' ||
                parts.last == 'name' ||
