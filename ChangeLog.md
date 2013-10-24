@@ -1,4 +1,5 @@
-0.5 (TBD)
+0.5 (2013-10-24)
+----------------
 
 * By request, the gem now ignores leading/trailing whitespace when validating
   domain names. This includes ignoring newlines at the end of domain names.
