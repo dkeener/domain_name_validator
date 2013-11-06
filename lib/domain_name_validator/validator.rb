@@ -50,6 +50,7 @@ class DomainNameValidator
   # 6. A domain name cannot begin with a period.
 
   def validate(dn, errs = [])
+    errs.clear   # Make sure the array starts out empty
     if dn.nil?
       errs << ERRS[:zero_size]
     else
