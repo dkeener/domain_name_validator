@@ -6,6 +6,13 @@
 
 * Remove timestamp from gemspec so Rubygems will calculate gem dates for us.
 
+* (0.5.1 - 2013-11-06) The validate method now avoids accidental memoization
+  on the part of the caller by ensuring that the contents of the array
+  argument have been cleared. Previously, if the caller called the method
+  multiple times using the same array, then all calls would result in FALSE
+  after the first FALSE was legitemately encountered. Yes, somebody did
+  this.
+
 0.4 (2013-07-17)
 ----------------
 
